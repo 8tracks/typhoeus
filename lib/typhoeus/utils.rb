@@ -15,6 +15,8 @@ module Typhoeus
     module_function :traverse_params_hash
 
     def traversal_to_param_string(traversal, escape = true)
+      # Remi: Always escape!
+      escape =  true
       traversal[:params].collect { |param|
         escape ? "#{Typhoeus::Utils.escape(param[0])}=#{Typhoeus::Utils.escape(param[1])}" : "#{param[0]}=#{param[1]}"
       }.join('&')
